@@ -21,7 +21,7 @@
         android:id="@+id/text_view_question_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_view_score"
+        android:layout_alignParentEnd="true"
         android:freezesText="true"
         android:text="Question: 1/x"
         android:textColor="@android:color/white" />
@@ -30,8 +30,7 @@
         android:id="@+id/text_view_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/radio_group"
-        android:layout_marginBottom="48dp"
+        android:layout_centerInParent="true"
         android:freezesText="true"
         android:text="Here will be the question text\nHere will be the question text\nHere will be the question text"
         android:textAlignment="center"
@@ -50,7 +49,7 @@
         android:text="Confirm" />
 
     <RadioGroup
-        android:id="@id/radio_group"
+        android:id="@+id/radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/button_confirm_next">
@@ -59,33 +58,41 @@
             android:id="@+id/radio_button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
             android:freezesText="true"
             android:text="Option 1"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/radio_button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
             android:freezesText="true"
             android:text="Option 2"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/radio_button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
             android:freezesText="true"
             android:text="Option 3"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/radio_button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
             android:freezesText="true"
             android:text="Option 4"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
 
     </RadioGroup>
 
