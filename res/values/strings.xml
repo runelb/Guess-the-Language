@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Guess the Language</string>
+    <string name="highscore">Highscore</string>
+</resources>
