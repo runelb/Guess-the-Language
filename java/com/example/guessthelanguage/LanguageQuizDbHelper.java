@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class LanguageQuizDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "GuesstheLanguage.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 4;
     private static final int numOfLangs = 5;    // actually change to be set by the number created?
 
     private SQLiteDatabase db;
@@ -51,6 +51,7 @@ public class LanguageQuizDbHelper extends SQLiteOpenHelper {
     }
 
     private void fillLanguageTable() {
+        // borde ändra lilla l ser ut som 1
         Language l1 = new Language("Swedish", "medium", "ger", "eur", "Hej, hur mår du?", "p2", "p3", "p4");
         addLanguage(l1);
         Language l2 = new Language("English", "easy", "ger", "eur", "Hi, how are you?", "p2", "p3", "p4");
@@ -61,6 +62,16 @@ public class LanguageQuizDbHelper extends SQLiteOpenHelper {
         addLanguage(l4);
         Language l5 = new Language("Turkish", "medium", "tur", "mid", "Merhaba nasılsın?", "p2", "p3", "p4");
         addLanguage(l5);
+        Language l6 = new Language("Romanian", "medium", "lat", "eur", "Salut, ce faci?", "p2", "p3", "p4");
+        addLanguage(l6);
+        Language l7 = new Language("Azeri", "hard", "tur", "mid", "Salam necəsən?", "p2", "p3", "p4");
+        addLanguage(l7);
+        Language l8 = new Language("Dutch", "medium", "ger", "eur", "Hallo hoe gaat het?", "p2", "p3", "p4");
+        addLanguage(l8);
+        Language l9 = new Language("Irish", "hard", "cel", "eur", "Dia duit, conas atá tú?", "p2", "p3", "p4");
+        addLanguage(l9);
+        Language l10 = new Language("Vietnamese", "hard", "aus", "asia", "Xin chào, bạn khỏe không?", "p2", "p3", "p4");
+        addLanguage(l10);
     }
     // above and below, Language class object is used to just fill the database, could be more efficient without using objects
     private void addLanguage(Language language) {
@@ -85,18 +96,9 @@ public class LanguageQuizDbHelper extends SQLiteOpenHelper {
         // selection_args for categories and difficulty etc.
         Cursor c = db.rawQuery("SELECT * FROM " + LanguageTable.TABLE_NAME, null);
 
-        // cursor must jump around for random languages
-        // c.moveToPosition([some number, 0 to end])
-        // use new java.lang.Math.random()
-        // ranGen = new java.util.Random()
-        // ranGen.nextInt(int upperBound)
-
         // new control of how many questions to make... set limit = 10 to start?
 
         // difficulty must be selected before/at this point!
-
-
-
         // randomly select a phrase     for now just the one
 
         // randomly select options      MAYBE returning a list of random options and shuffling that?
@@ -112,7 +114,6 @@ public class LanguageQuizDbHelper extends SQLiteOpenHelper {
                 rightAnswer = c.getString(c.getColumnIndex(LanguageTable.COLUMN_LANGUAGE));
                 int currentPosition = c.getPosition();
 
-                // currently will repeat options
 
                 ArrayList<Integer> positions = new ArrayList<>();
                 positions.add(currentPosition);
@@ -123,14 +124,16 @@ public class LanguageQuizDbHelper extends SQLiteOpenHelper {
                     }
                 }   // now list of unique positions
 
-                c.moveToPosition(randGen.nextInt(numOfLangs));
+                c.moveToPosition(positions.get(1));
                 question.setOption1(c.getString(c.getColumnIndex(LanguageTable.COLUMN_LANGUAGE)));
-                c.moveToPosition(randGen.nextInt(numOfLangs));
+                c.moveToPosition(positions.get(2));
                 question.setOption2(c.getString(c.getColumnIndex(LanguageTable.COLUMN_LANGUAGE)));
-                c.moveToPosition(randGen.nextInt(numOfLangs));
+                c.moveToPosition(positions.get(3));
                 question.setOption3(c.getString(c.getColumnIndex(LanguageTable.COLUMN_LANGUAGE)));
-                c.moveToPosition(randGen.nextInt(numOfLangs));
+                c.moveToPosition(positions.get(4));
                 question.setOption4(c.getString(c.getColumnIndex(LanguageTable.COLUMN_LANGUAGE)));
+
+                positions.clear();
 
                 // overwrite one option with the correct answer
                 answerNr = randGen.nextInt(4);
